@@ -8,5 +8,7 @@ namespace KingdomsAndCastles.Mods.Multiplayer.Networking.Protocol.Packets
     {
         public abstract short PacketType { get; }
         public abstract QosType ChannelType { get; }
+
+        public static EmptyPacket Empty { get; } = new EmptyPacket();
     }
 }

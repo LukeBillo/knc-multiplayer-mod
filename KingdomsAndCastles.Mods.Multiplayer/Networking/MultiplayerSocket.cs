@@ -81,9 +81,12 @@ namespace KingdomsAndCastles.Mods.Multiplayer.Networking
             return handler.Invoke(data);
         }
 
-        public void SendPacket(Packet data, int connectionId)
+        public void SendPacket(Packet packet, int connectionId)
         {
-            var sendToChannelId = _channels[data.ChannelType];
+            if (packet is EmptyPacket)
+                return;
+            
+            var sendToChannelId = _channels[packet.ChannelType];
             var packetBuffer = new byte[PacketBufferSize];
             
             NetworkTransport.Send(HostId, connectionId, sendToChannelId, packetBuffer, PacketBufferSize, out var error);

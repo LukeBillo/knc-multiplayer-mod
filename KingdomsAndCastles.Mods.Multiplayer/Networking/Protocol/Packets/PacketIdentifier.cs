@@ -3,6 +3,7 @@
     public enum PacketIdentifier : short
     {
         Unknown,
+        Empty,
         RequestInitState,
     }
 }
