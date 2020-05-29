@@ -1,5 +1,6 @@
 ﻿using System;
 using KingdomsAndCastles.Mods.Multiplayer.Networking.Protocol;
+using KingdomsAndCastles.Mods.Multiplayer.Networking.Protocol.PacketHandlers;
 using UnityEngine.Networking;
 
 namespace KingdomsAndCastles.Mods.Multiplayer.Networking
@@ -11,7 +12,10 @@ namespace KingdomsAndCastles.Mods.Multiplayer.Networking
 
         public int ServerConnectionId { get; private set; } = ConnectionIds.Disconnected;
 
-        public MultiplayerClient() : base(64468) {}
+        public MultiplayerClient() : base(64468)
+        {
+            RegisterHandler<InitialStateResponsePacketHandler>();
+        }
         
         public bool TryConnect(string connectToAddress)
         {
